@@ -110,8 +110,11 @@ public class MainThread {
 		System.out.println("COMPLETE FETCH SIZE:"+filesetcompleteImages.size());
 
 		StringBuffer sb = new StringBuffer();
+		sb.append("propertyId, brandId, inLDVRX, inLDImages, inPIMT, createdDate, modifiedDate, shootDate, filename, filePath").append(System.getProperty("line.separator"));
 		for (FileMeta fileMetaOut : filesetcompleteImages) {
 			for (FileMeta fileMetaInp : filesetinput) {
+				//System.out.println(fileMetaInp.getBrandId() + " - " + fileMetaOut.getBrandId());
+				//System.out.println(fileMetaInp.getPropertyId() + " - " + fileMetaOut.getPropertyId());
 				if(fileMetaInp.getBrandId().equalsIgnoreCase(fileMetaOut.getBrandId())
 						&& fileMetaInp.getPropertyId().equalsIgnoreCase(fileMetaOut.getPropertyId())) {
 					fileMetaOut.setInPIMT("TRUE");
@@ -128,9 +131,10 @@ public class MainThread {
 	}
 
 	private static String getProp(String path) {
-		Matcher m = Pattern.compile("([0-9]{1,5}+)").matcher(path);
+		//System.out.println("------>"+path);
+		Matcher m = Pattern.compile("\\\\([0-9]{1,5}+)").matcher(path);
 		if (m.find()) {
-			return padzero(m.group());
+			return padzero((m.group()).substring(1));
 		}
 		return "00000";
 	}
