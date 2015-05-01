@@ -65,7 +65,8 @@ public class MainThread {
 				LDRIVE_IMAGE_PATH = args[2];
 				LDRIVE_VRX_PATH = args[3];
 			} else {
-				System.out.println("USAGE:: " + " ");
+				System.out.println("USAGE:: " + " java -cp vrx-full.jar com.whg.vrxcompare.MainThread [INPUT_PROPERTY_LIST] [OUTPUT_FILE] [LDRIVE_IMAGE_PATH] [LDRIVE_VRX_PATH] ");
+				System.exit(1);
 			}
 		}
 		// Fetch the input brand and property ids
@@ -164,7 +165,7 @@ public class MainThread {
 						fileMeta.setInLDImages("FALSE");
 				}
 				
-				System.out.println(fileMeta.getPropertyId());
+				//System.out.println(fileMeta.getPropertyId());
 			}
 			filesetcompleteImages.addAll(ilist);
 			System.out.println(this.type + "[" + this.bid + "]" + " is complete!!");
