@@ -12,10 +12,10 @@ import com.whg.vrxcompare.FileUtil.FileType;
 
 public class MainThread {
 
-	private static final String INPUT_PROPERTY_LIST = "C:/Rajarshi/MyLab/VRXDAMCOMPARE/proplist.csv";
-	private static final String OUTPUT_FILE = "C:/Rajarshi/MyLab/VRXDAMCOMPARE/output.csv";
-	private static final String LDRIVE_IMAGE_PATH = "//hotelgroup.com/newjersey/HIT/Rajarshi/LDrive/Images/";
-	private static final String LDRIVE_VRX_PATH = "//hotelgroup.com/newjersey/HIT/Rajarshi/LDrive/VRX/";
+	private static String INPUT_PROPERTY_LIST = "C:/Rajarshi/MyLab/VRXDAMCOMPARE/proplist.csv";
+	private static String OUTPUT_FILE = "C:/Rajarshi/MyLab/VRXDAMCOMPARE/output.csv";
+	private static String LDRIVE_IMAGE_PATH = "//hotelgroup.com/newjersey/HIT/Rajarshi/LDrive/Images/";
+	private static String LDRIVE_VRX_PATH = "//hotelgroup.com/newjersey/HIT/Rajarshi/LDrive/VRX/";
 
 	private static final String[] LDRIVE_IMAGES_BRANDS = new String[] {
 			"Days Inn", "Baymont", "Dream-Night", "Hawthorn", "Howard Johnson",
@@ -57,7 +57,17 @@ public class MainThread {
 	private static List<FileMeta> filesetcompleteImages = new ArrayList<FileMeta>();
 
 	public static void main(String[] args) {
-
+		
+		if(args.length > 0 ){
+			if(args.length == 4) {
+				INPUT_PROPERTY_LIST = args[0];
+				OUTPUT_FILE = args[1];
+				LDRIVE_IMAGE_PATH = args[2];
+				LDRIVE_VRX_PATH = args[3];
+			} else {
+				System.out.println("USAGE:: " + " ");
+			}
+		}
 		// Fetch the input brand and property ids
 		List<String> inputdata = new FileUtil(INPUT_PROPERTY_LIST).readFile();
 
@@ -96,7 +106,7 @@ public class MainThread {
 		while (!executor.isTerminated()) {}
 
 		// Generate the output
-		System.out.println(filesetcompleteImages.size());
+		System.out.println("COMPLETE FETCH SIZE:"+filesetcompleteImages.size());
 
 		StringBuffer sb = new StringBuffer();
 		for (FileMeta fileMetaOut : filesetcompleteImages) {
@@ -135,7 +145,7 @@ public class MainThread {
 			this.type = type;
 		}
 		public void run() {
-			System.out.println(Thread.currentThread().getName() + " is running...");
+			System.out.println(this.type + "[" + this.bid + "]" + " is running...");
 			List<FileMeta> ilist = new FileUtil(this.path).findFiles(FileType.IMAGE);
 			for (FileMeta fileMeta : ilist) {
 				fileMeta.setBrandId(propNamevsId.get(this.bid));
@@ -157,7 +167,7 @@ public class MainThread {
 				System.out.println(fileMeta.getPropertyId());
 			}
 			filesetcompleteImages.addAll(ilist);
-			System.out.println(Thread.currentThread().getName() + " is complete!!");
+			System.out.println(this.type + "[" + this.bid + "]" + " is complete!!");
 		}
 		
 	}
