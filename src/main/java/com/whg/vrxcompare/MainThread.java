@@ -113,8 +113,6 @@ public class MainThread {
 		sb.append("propertyId, brandId, inLDVRX, inLDImages, inPIMT, createdDate, modifiedDate, shootDate, filename, filePath").append(System.getProperty("line.separator"));
 		for (FileMeta fileMetaOut : filesetcompleteImages) {
 			for (FileMeta fileMetaInp : filesetinput) {
-				//System.out.println(fileMetaInp.getBrandId() + " - " + fileMetaOut.getBrandId());
-				//System.out.println(fileMetaInp.getPropertyId() + " - " + fileMetaOut.getPropertyId());
 				if(fileMetaInp.getBrandId().equalsIgnoreCase(fileMetaOut.getBrandId())
 						&& fileMetaInp.getPropertyId().equalsIgnoreCase(fileMetaOut.getPropertyId())) {
 					fileMetaOut.setInPIMT("TRUE");

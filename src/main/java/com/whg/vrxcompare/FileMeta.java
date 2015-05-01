@@ -11,6 +11,7 @@ public class FileMeta {
 	private String shootDate;
 	private String filename;
 	private String filePath;
+	private String isVRXLatest;
 
 	public String getCreatedDate() {
 		return createdDate;
@@ -111,9 +112,20 @@ public class FileMeta {
 		builder.append(", ");
 		builder.append(shootDate);
 		builder.append(", ");
+		builder.append(isVRXLatest);
+		builder.append(", ");
 		builder.append(filename);
 		builder.append(", ");
 		builder.append(filePath);
+		
 		return builder.toString();
+	}
+
+	public String getIsVRXLatest() {
+		return isVRXLatest;
+	}
+
+	public void setIsVRXLatest(String isVRXLatest) {
+		this.isVRXLatest = isVRXLatest;
 	}
 }
