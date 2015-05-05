@@ -44,8 +44,8 @@ public class CompareSets {
 			fileMeta.setCreatedDate(ldinlineattrs[5].trim());
 			fileMeta.setModifiedDate(ldinlineattrs[6].trim());
 			fileMeta.setShootDate(ldinlineattrs[7].trim());
-			fileMeta.setFilename(ldinlineattrs[8].trim());
-			fileMeta.setFilePath(ldinlineattrs[9].trim());
+			fileMeta.setFilename(ldinlineattrs[9].trim());
+			fileMeta.setFilePath(ldinlineattrs[10].trim());
 			ldlist.add(fileMeta);
 		}
 		
