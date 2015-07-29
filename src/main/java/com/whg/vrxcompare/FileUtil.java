@@ -151,7 +151,7 @@ public class FileUtil {
 	
 	private static String formatDate(String date) {
 		try {
-			return new SimpleDateFormat(DATE_FORMAT).format(new SimpleDateFormat("YYYY-MM-DD").parse(date.split("T")[0]));
+			return new SimpleDateFormat(DATE_FORMAT).format(new SimpleDateFormat("yyyy-MM-dd").parse(date.split("T")[0]));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
